@@ -65,6 +65,9 @@ def main():
 
             HOST = host.strip()
             IP = ip[0].to_text()
+
+            print('{} {}'.format(IP, HOST))
+
             with open('%s/github_hosts.txt' % file_path, 'a') as result:
                 result.write('{} {}\n'.format(IP, HOST))
 

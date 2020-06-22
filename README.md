@@ -19,7 +19,7 @@ pip install dnspython=2.0.0rc1
 ## Usage for linux
 1. Git clone or download zip
 2. su root
-3. Execute `bash linux/linux_run.sh` to write the github hosts to the /etc/hosts
+3. Execute `sudo bash linux/linux_run.sh` to write the github hosts to the /etc/hosts
 4. Enjoy GitHub!
 
 ## Contributing
