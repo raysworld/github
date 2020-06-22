@@ -4,19 +4,22 @@ GitHub Acceleration Best Practices, see at: [GitHub 加速最佳实践](https://
 
 ## Installation
 
-Installation via git clone or download this repo.
+Installation via git clone or download this repo. 
+```shell
+pip install dnspython=2.0.0rc1
+```
 
 ## Usage
 
 1. Git clone or download zip
-2. Execute `python github_hosts.py`, python 2.7+ required
+2. Execute `python github_hosts.py`, python 3.6+ required
 3. Copy content of `github_hosts.txt` to local hosts file
 4. Enjoy GitHub!
 
 ## Usage for linux
 1. Git clone or download zip
 2. su root
-3. Execute `bash linux/linux_start.sh`, this script will add a cron job tp refresh /etc/hosts every hour
+3. Execute `bash linux/linux_run.sh` to write the github hosts to the /etc/hosts
 4. Enjoy GitHub!
 
 ## Contributing
