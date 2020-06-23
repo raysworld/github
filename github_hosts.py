@@ -14,6 +14,8 @@ import sys
 import dns.resolver as dns_res
 import dns.rdatatype as dns_type
 
+import requests, re
+
 file_path = os.path.split(os.path.realpath(__file__))[0]
 
 def get_ip(host):
@@ -52,6 +54,28 @@ def get_ip_dns(host):
 
     return host_ip
 
+def get_ip_ipaddress(host):
+    """
+    Get ip of host via ipaddress.com
+    """
+    name_split = host.split('.')
+    if len(name_split) == 2:
+        url = 'https://{}.ipaddress.com'.format(host)
+    elif len(name_split) == 3:
+        url = 'https://{}.{}.ipaddress.com/{}'.format(name_split[1], name_split[2], host)
+    else:
+        print('Unrecognized domain name format. Abort.')
+        exit(-1)
+
+    r = requests.get(url)
+    txt = r.content.decode()
+
+    x = re.search('\"https://www.ipaddress.com/ipv4/((?:[0-9]{1,3}\.){3}[0-9]{1,3})\"', txt)
+
+    host_ip = x.group(1)
+
+    return host_ip
+
 
 def main():
     f = open('%s/github_hosts.txt' % file_path,'w')
@@ -61,10 +85,10 @@ def main():
     with open("%s/github_domain.txt" % file_path, "r") as ins:
         for host in ins:
             # print(host.strip())
-            ip = get_ip_dns(host.strip())
+            ip = get_ip_ipaddress(host.strip())
 
             HOST = host.strip()
-            IP = ip[0].to_text()
+            IP = ip
 
             print('{} {}'.format(IP, HOST))
 
